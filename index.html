@@ -1,0 +1,525 @@
+
+<html>
+<head>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link rel='icon' type='image/x-icon' href='favicon.ico'>
+    <title>PureDJ</title>
+    <script src='https://code.jquery.com/jquery-3.7.1.min.js'></script>
+    <script src='https://cdn.tailwindcss.com'></script>
+    <script> window.FontAwesomeConfig = { autoReplaceSvg: 'nest'};</script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js' crossorigin='anonymous' referrerpolicy='no-referrer'></script>
+    <link rel='preconnect' href='https://fonts.googleapis.com'>
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+    <link href='https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&amp;display=swap' rel='stylesheet'>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0292D2',
+                        dark: '#0A0E27',
+                        darker: '#050816',
+                    },
+                    fontFamily: {
+                        exo: ['Exo 2', 'sans-serif'],
+                    },
+                    letterSpacing: {
+                        tighter: '-0.02em',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Font - Ethnocentric */
+        @font-face {
+            font-family: 'Ethnocentric';
+            src: url('ethnocentric.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        ::-webkit-scrollbar { display: none;}
+        body {
+            background: linear-gradient(135deg, #0A0E27 0%, #050816 100%);
+            font-family: 'Exo 2', sans-serif;
+            letter-spacing: -0.02em;
+        }
+        
+        h1, h2,h3,j{
+            font-family: 'Ethnocentric', 'Exo 2', sans-serif;
+        }
+        
+        header nav a {
+            font-family: 'Ethnocentric', 'Exo 2', sans-serif;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .animate-pulse-slow {
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        .animate-slide-up {
+            animation: slideUp 0.6s ease-out forwards;
+        }
+        
+        .glow {
+            box-shadow: 0 0 20px rgba(2, 146, 210, 0.3);
+        }
+        
+        .glow-strong {
+            box-shadow: 0 0 30px rgba(2, 146, 210, 0.6), 0 0 60px rgba(2, 146, 210, 0.3);
+        }
+        
+        .equalizer-bar {
+            width: 4px;
+            background: linear-gradient(to top, #0292D2, #00D4FF);
+            border-radius: 2px;
+            animation: equalize 0.8s ease-in-out infinite;
+        }
+        
+        @keyframes equalize {
+            0%, 100% { height: 20%; }
+            50% { height: 100%; }
+        }
+        
+        .equalizer-bar:nth-child(1) { animation-delay: 0s; }
+        .equalizer-bar:nth-child(2) { animation-delay: 0.1s; }
+        .equalizer-bar:nth-child(3) { animation-delay: 0.2s; }
+        .equalizer-bar:nth-child(4) { animation-delay: 0.3s; }
+        .equalizer-bar:nth-child(5) { animation-delay: 0.4s; }
+        
+        .wave-bg {
+            background: linear-gradient(135deg, rgba(2, 146, 210, 0.1) 0%, rgba(0, 212, 255, 0.05) 100%);
+        }
+    </style>
+</head>
+<body class='text-white'>
+
+<header id='header' class='fixed top-0 left-0 right-0 z-50 bg-darker/80 backdrop-blur-md border-b border-primary/20'>
+    <div class='max-w-7xl mx-auto px-6 py-4 flex items-center justify-between'>
+        <div class='flex items-center space-x-3'>
+           <img  src="logo.png" alt="Logo" class="h-14 w-auto"/>
+        </div>
+        
+        <nav class='flex items-center space-x-8'>
+            <a href='#' class='text-white hover:text-primary transition-colors font-normal tracking-tighter'>Home</a>
+            <a href='#' class='text-gray-400 hover:text-primary transition-colors font-normal tracking-tighter'>About Us</a>
+            <a href='#' class='text-gray-400 hover:text-primary transition-colors font-normal tracking-tighter'>DJs</a>
+            <a href='#artists-section' class='text-gray-400 hover:text-primary transition-colors font-normal tracking-tighter'>Submit Music</a>
+            <a href='#' class='text-gray-400 hover:text-primary transition-colors font-normal tracking-tighter'>Contact</a>
+        </nav>
+        
+        <div class='flex items-center space-x-4'>
+            <a href='#' class='w-10 h-10 rounded-full bg-dark border border-primary/30 flex items-center justify-center hover:bg-primary/20 transition-all'>
+                <i class='fa-brands fa-facebook-f text-primary'></i>
+            </a>
+            <a href='#' class='w-10 h-10 rounded-full bg-dark border border-primary/30 flex items-center justify-center hover:bg-primary/20 transition-all'>
+                <i class='fa-brands fa-instagram text-primary'></i>
+            </a>
+            <a href='#' class='w-10 h-10 rounded-full bg-dark border border-primary/30 flex items-center justify-center hover:bg-primary/20 transition-all'>
+                <i class='fa-brands fa-twitter text-primary'></i>
+            </a>
+            <a href='#' class='w-10 h-10 rounded-full bg-dark border border-primary/30 flex items-center justify-center hover:bg-primary/20 transition-all'>
+                <i class='fa-brands fa-youtube text-primary'></i>
+            </a>
+        </div>
+    </div>
+</header>
+
+<main id='main-content' class='pt-20'>
+
+
+    <section id='player-section' class='py-16'>
+        <div class='max-w-7xl mx-auto px-6'>
+            <div class='bg-gradient-to-br from-dark to-darker rounded-3xl p-8 border border-primary/30 glow'>
+                <div class='flex items-center justify-between mb-8'>
+                    <div>
+                        <h1 class='font-exo text-3xl font-bold italic mb-2 tracking-tighter'>Live Now</h1>
+                        <h2 class='text-gray-400 tracking-tighter'>Broadcasting the best electronic music</h2>
+                    </div>
+                    <div class='flex items-center space-x-3'>
+                        <div class='w-3 h-3 bg-red-500 rounded-full animate-pulse-slow'></div>
+                        <span class='text-red-500 font-bold tracking-tighter'>ON AIR</span>
+                    </div>
+                </div>
+                
+                <div class='grid grid-cols-3 gap-8'>
+                    <div class='col-span-1'>
+                        <div class='relative'>
+                            <div class='aspect-square rounded-2xl overflow-hidden border-4 border-primary/30 glow'>
+                                <img class='w-full h-full object-cover' src='https://storage.googleapis.com/uxpilot-auth.appspot.com/cdceaceaad-1be5293730721d3c1bf6.png' alt='futuristic DJ turntable with neon blue lights, electronic music theme, dark background' />
+                            </div>
+                            <div class='absolute -bottom-4 left-1/2 -translate-x-1/2 bg-primary px-6 py-2 rounded-full font-exo font-bold italic tracking-tighter'>
+                                DJ PULSE
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class='col-span-2 flex flex-col justify-center'>
+                        <div class='mb-6'>
+                            <h2 class='font-exo text-2xl font-bold italic mb-2 tracking-tighter'>Progressive Trance Sessions</h2>
+                            <p class='text-gray-400 mb-4 tracking-tighter'>Current Track: PureDJ.fm - Trance and House</p>
+                            
+                            <div class='flex items-center space-x-2 mb-4'>
+                                <div class='equalizer-bar'></div>
+                                <div class='equalizer-bar'></div>
+                                <div class='equalizer-bar'></div>
+                                <div class='equalizer-bar'></div>
+                                <div class='equalizer-bar'></div>
+                                <span class='ml-4 text-primary font-bold tracking-tighter'>128 BPM</span>
+                            </div>
+                            
+                            <!-- Radio Stream Player -->
+                            <audio id='radio-stream' preload='auto'>
+                                <source src='https://casthttps.suaradionanet.net/10502/stream' type='audio/mpeg'>
+                            </audio>
+                        </div>
+                        
+                        <div class='flex items-center space-x-4 mb-6'>
+                            <button id='play-btn' class='w-16 h-16 rounded-full bg-primary hover:bg-primary/80 flex items-center justify-center transition-all glow-strong'>
+                                <i id='play-icon' class='fa-solid fa-play text-2xl'></i>
+                                <i id='pause-icon' class='fa-solid fa-pause text-2xl' ></i>
+                            </button>
+                            <button class='w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all border border-primary/30'>
+                                <i class='fa-solid fa-heart'></i>
+                            </button>
+                            <button class='w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all border border-primary/30'>
+                                <i class='fa-solid fa-share-nodes'></i>
+                            </button>
+                        </div>
+                        
+                        <div class='flex items-center space-x-6 text-sm text-gray-400 tracking-tighter'>
+                            
+                            <div class='flex items-center space-x-2'>
+                                <i class='fa-solid fa-clock text-primary'></i>
+                                <span>24/7 streaming</span>
+                            </div>
+                            <div class='flex items-center space-x-2'>
+                                <i class='fa-solid fa-signal text-primary'></i>
+                                <span>320kbps HQ</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id='app-section' class='py-16 wave-bg'>
+        <div class='max-w-7xl mx-auto px-6'>
+            <div class='grid grid-cols-2 gap-12 items-center'>
+                <div>
+                    <h3 class='font-exo text-4xl font-bold italic mb-4 tracking-tighter'>Take PureDJ<br/>Everywhere</h3>
+                    <p class='text-xl text-gray-300 mb-6 tracking-tighter'>
+                        Download our mobile app and never miss a beat. Available for iOS and Android with exclusive features.
+                    </p>
+                    <ul class='space-y-3 mb-8'>
+                        <li class='flex items-center space-x-3'>
+                            <i class='fa-solid fa-check-circle text-primary text-xl'></i>
+                            <span class='text-gray-300 tracking-tighter'>Offline listening mode</span>
+                        </li>
+                        <li class='flex items-center space-x-3'>
+                            <i class='fa-solid fa-check-circle text-primary text-xl'></i>
+                            <span class='text-gray-300 tracking-tighter'>Personalized playlists</span>
+                        </li>
+                        <li class='flex items-center space-x-3'>
+                            <i class='fa-solid fa-check-circle text-primary text-xl'></i>
+                            <span class='text-gray-300 tracking-tighter'>DJ schedule notifications</span>
+                        </li>
+                        <li class='flex items-center space-x-3'>
+                            <i class='fa-solid fa-check-circle text-primary text-xl'></i>
+                            <span class='text-gray-300 tracking-tighter'>High-quality audio streaming</span>
+                        </li>
+                    </ul>
+                    <div class='flex items-center space-x-4'>
+                        <button class='px-6 py-3 bg-black hover:bg-black/80 rounded-xl font-bold transition-all flex items-center space-x-3 border border-white/20 tracking-tighter'>
+                            <i class='fa-brands fa-apple text-2xl'></i>
+                            <div class='text-left'>
+                                <div class='text-xs text-gray-400'>Download on the</div>
+                                <div class='text-sm'>App Store</div>
+                            </div>
+                        </button>
+                        <button class='px-6 py-3 bg-black hover:bg-black/80 rounded-xl font-bold transition-all flex items-center space-x-3 border border-white/20 tracking-tighter'>
+                            <i class='fa-brands fa-google-play text-2xl'></i>
+                            <div class='text-left'>
+                                <div class='text-xs text-gray-400'>Get it on</div>
+                                <div class='text-sm'>Google Play</div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class='relative'>
+                    <div class='absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent rounded-3xl blur-3xl'></div>
+                    <div class='relative'>
+                        <img class='w-full h-auto max-h-[500px] object-contain' src='https://storage.googleapis.com/uxpilot-auth.appspot.com/ada6da4ac5-0601367382ce0b12ee63.png' alt='modern smartphone mockup displaying music app interface with dark theme and blue neon accents, floating in space' />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id='features-section' class='py-16'>
+        <div class='max-w-7xl mx-auto px-6'>
+            <div class='text-center mb-12'>
+                <h3 class='font-exo text-4xl font-bold italic mb-4 tracking-tighter'>Why Choose PureDJ</h3>
+                <p class='text-xl text-gray-300 tracking-tighter'>Experience electronic music like never before</p>
+            </div>
+            
+            <div class='grid grid-cols-3 gap-8'>
+                <div class='bg-gradient-to-br from-dark to-darker rounded-2xl p-8 border border-primary/30 hover:border-primary/60 transition-all'>
+                    <div class='w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center mb-6'>
+                        <i class='fa-solid fa-broadcast-tower text-primary text-3xl'></i>
+                    </div>
+                    <h4 class='font-exo text-xl font-bold italic mb-3 tracking-tighter'>24/7 Live Streaming</h4>
+                    <p class='text-gray-400 tracking-tighter'>Non-stop electronic music broadcasting with professional DJs around the clock.</p>
+                </div>
+                
+                <div class='bg-gradient-to-br from-dark to-darker rounded-2xl p-8 border border-primary/30 hover:border-primary/60 transition-all'>
+                    <div class='w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center mb-6'>
+                        <i class='fa-solid fa-waveform-lines text-primary text-3xl'></i>
+                    </div>
+                    <h4 class='font-exo text-xl font-bold italic mb-3 tracking-tighter'>Premium Audio Quality</h4>
+                    <p class='text-gray-400 tracking-tighter'>Crystal clear 320kbps streaming for the ultimate listening experience.</p>
+                </div>
+                
+                <div class='bg-gradient-to-br from-dark to-darker rounded-2xl p-8 border border-primary/30 hover:border-primary/60 transition-all'>
+                    <div class='w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center mb-6'>
+                        <i class='fa-solid fa-users-line text-primary text-3xl'></i>
+                    </div>
+                    <h4 class='font-exo text-xl font-bold italic mb-3 tracking-tighter'>Global Community</h4>
+                    <p class='text-gray-400 tracking-tighter'>Connect with thousands of electronic music lovers worldwide.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id='artists-section' class='py-16'>
+        <div class='max-w-7xl mx-auto px-6'>
+            <div class='bg-gradient-to-br from-dark to-darker rounded-3xl p-12 border border-primary/30 relative overflow-hidden'>
+                <div class='absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl'></div>
+                <div class='relative z-10 grid grid-cols-2 gap-12 items-center'>
+                    <div>
+                        <div class='inline-block px-4 py-2 bg-primary/20 rounded-full border border-primary/40 mb-4'>
+                            <span class='text-primary font-bold text-sm tracking-tighter'>FOR ARTISTS</span>
+                        </div>
+                        <h3 class='font-exo text-4xl font-bold italic mb-4 tracking-tighter'>Get Your Music On Air</h3>
+                        <p class='text-xl text-gray-300 mb-6 tracking-tighter'>
+                            Are you an electronic music producer? We're always looking for fresh Trance and House tracks to feature on PureDJ.
+                        </p>
+                        <ul class='space-y-3 mb-8'>
+                            <li class='flex items-center space-x-3'>
+                                <i class='fa-solid fa-music text-primary text-xl'></i>
+                                <span class='text-gray-300 tracking-tighter'>Submit your original tracks</span>
+                            </li>
+                            <li class='flex items-center space-x-3'>
+                                <i class='fa-solid fa-chart-line text-primary text-xl'></i>
+                                <span class='text-gray-300 tracking-tighter'>Reach thousands of listeners</span>
+                            </li>
+                            <li class='flex items-center space-x-3'>
+                                <i class='fa-solid fa-handshake text-primary text-xl'></i>
+                                <span class='text-gray-300 tracking-tighter'>Collaborate with our DJs</span>
+                            </li>
+                        </ul>
+                        <button class='px-8 py-4 bg-primary hover:bg-primary/80 rounded-full font-bold text-lg transition-all glow-strong tracking-tighter'>
+                            <i class='fa-solid fa-paper-plane mr-2'></i>
+                            Submit Your Track
+                        </button>
+                    </div>
+                    <div class='flex items-center justify-center'>
+                        <div class='relative'>
+                            <div class='w-80 h-80 rounded-2xl bg-gradient-to-br from-primary/20 to-transparent border border-primary/30 flex items-center justify-center'>
+                                <i class='fa-solid fa-compact-disc text-primary text-9xl animate-pulse-slow'></i>
+                            </div>
+                            <div class='absolute -top-4 -right-4 w-24 h-24 bg-primary rounded-full flex items-center justify-center glow-strong'>
+                                <i class='fa-solid fa-microphone text-white text-3xl'></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id='cta-section' class='py-16'>
+        <div class='max-w-7xl mx-auto px-6'>
+            <div class='bg-gradient-to-r from-primary to-cyan-500 rounded-3xl p-12 text-center relative overflow-hidden'>
+                <div class='absolute inset-0 opacity-10'>
+                    <div class='absolute inset-0' style='background-image: radial-gradient(circle, white 1px, transparent 1px); background-size: 20px 20px;'></div>
+                </div>
+                <div class='relative z-10'>
+                    <h3 class='font-exo text-4xl font-bold italic mb-4 tracking-tighter'>Ready to Tune In?</h3>
+                    <p class='text-xl mb-8 text-white/90 tracking-tighter'>Join thousands of listeners and experience the best electronic music</p>
+                    <button class='px-10 py-4 bg-white text-primary hover:bg-gray-100 rounded-full font-bold text-lg transition-all shadow-xl tracking-tighter'>
+                        <i class='fa-solid fa-play mr-2'></i>
+                        Start Listening Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer id='footer' class='bg-darker border-t border-primary/20 py-12 mt-16'>
+    <div class='max-w-7xl mx-auto px-6'>
+        <div class='grid grid-cols-4 gap-8 mb-8'>
+            <div>
+                <div class='flex items-center space-x-3 mb-4'>
+             <img  src="logo.png" alt="Logo" class="h-10 w-auto"/>
+                </div>
+                <p class='text-gray-400 text-sm tracking-tighter'>The finest electronic music streaming platform for Trance &amp; House lovers.</p>
+            </div>
+            
+            <div>
+                <h5 class='font-exo font-bold italic mb-4 tracking-tighter'>Quick Links</h5>
+                <ul class='space-y-2 text-gray-400 text-sm'>
+                    <li><a href='#' class='hover:text-primary transition-colors tracking-tighter'>Home</a></li>
+                    <li><a href='#' class='hover:text-primary transition-colors tracking-tighter'>About us</a></li>
+                    <li><a href='#' class='hover:text-primary transition-colors tracking-tighter'>DJs</a></li>
+                    <li><a href='#artists-section' class='hover:text-primary transition-colors tracking-tighter'>Submit Music</a></li>
+                    <li><a href='#' class='hover:text-primary transition-colors tracking-tighter'>Contact</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h5 class='font-exo font-bold italic mb-4 tracking-tighter'>Legal</h5>
+                <ul class='space-y-2 text-gray-400 text-sm'>
+                    <li><a href='#' class='hover:text-primary transition-colors tracking-tighter'>Terms of Service</a></li>
+                    <li><a href='#' class='hover:text-primary transition-colors tracking-tighter'>Privacy Policy</a></li>
+                    <li><a href='#' class='hover:text-primary transition-colors tracking-tighter'>Cookie Policy</a></li>
+                    <li><a href='#' class='hover:text-primary transition-colors tracking-tighter'>DMCA</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h5 class='font-exo font-bold italic mb-4 tracking-tighter'>Connect With Us</h5>
+                <div class='flex items-center space-x-3 mb-4'>
+                    <a href='#' class='w-10 h-10 rounded-full bg-dark border border-primary/30 flex items-center justify-center hover:bg-primary/20 transition-all'>
+                        <i class='fa-brands fa-facebook-f text-primary'></i>
+                    </a>
+                    <a href='#' class='w-10 h-10 rounded-full bg-dark border border-primary/30 flex items-center justify-center hover:bg-primary/20 transition-all'>
+                        <i class='fa-brands fa-instagram text-primary'></i>
+                    </a>
+                    <a href='#' class='w-10 h-10 rounded-full bg-dark border border-primary/30 flex items-center justify-center hover:bg-primary/20 transition-all'>
+                        <i class='fa-brands fa-twitter text-primary'></i>
+                    </a>
+                    <a href='#' class='w-10 h-10 rounded-full bg-dark border border-primary/30 flex items-center justify-center hover:bg-primary/20 transition-all'>
+                        <i class='fa-brands fa-youtube text-primary'></i>
+                    </a>
+                </div>
+                <p class='text-gray-400 text-sm tracking-tighter'>
+                    <i class='fa-solid fa-envelope text-primary mr-2'></i>
+                    contact@puredj.com
+                </p>
+            </div>
+        </div>
+        
+        <div class='border-t border-primary/20 pt-8 flex items-center justify-between'>
+            <p class='text-gray-400 text-sm tracking-tighter'>© 2024 PureDJ. All rights reserved.</p>
+            <p class='text-gray-400 text-sm tracking-tighter'>Made with <i class='fa-solid fa-heart text-primary'></i> for electronic music lovers</p>
+        </div>
+    </div>
+</footer>
+
+
+  <script>
+    (function() {
+      function blockEvent(e) {
+        if (!e) return false;
+        if (typeof e.preventDefault === 'function') e.preventDefault();
+        if (typeof e.stopPropagation === 'function') e.stopPropagation();
+        if (typeof e.stopImmediatePropagation === 'function') e.stopImmediatePropagation();
+        return false;
+      }
+
+      // Block all anchor navigations (including http(s), mailto, tel, hash, fragments)
+      document.addEventListener('click', function(e) {
+        var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+        if (!a) return;
+        return blockEvent(e);
+      }, true);
+
+      // Block form submissions
+      document.addEventListener('submit', function(e) {
+        return blockEvent(e);
+      }, true);
+
+      // Neutralize programmatic navigation attempts
+      try { window.open = function() { return null }; } catch (_) {}
+      try {
+        var noop = function(){};
+        history.pushState = noop;
+        history.replaceState = noop;
+      } catch (_) {}
+      try {
+        if (window.location) {
+          window.location.assign = function(){};
+          window.location.replace = function(){};
+        }
+      } catch (_) {}
+    })();
+  </script>
+
+  <!-- Radio Player Controls -->
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+      const audio = document.getElementById('radio-stream');
+      const playBtn = document.getElementById('play-btn');
+      const playIcon = document.getElementById('play-icon');
+      const pauseIcon = document.getElementById('pause-icon');
+      pauseIcon.style.display = 'none';
+      // Set initial volume to 50%
+      audio.volume = 0.5;
+      
+    
+
+      audio.addEventListener('ended', function() {
+        audio.load();
+        if (!audio.paused) {
+          audio.play();
+        }
+      });
+      
+      audio.addEventListener('error', function(e) {
+        console.log('Stream error detected');
+        console.log('Error details:', e);
+        console.log('Audio error code:', audio.error ? audio.error.code : 'N/A');
+        console.log('Audio error message:', audio.error ? audio.error.message : 'N/A');
+        
+        // Apenas log o erro, não tenta reconectar automaticamente
+        // Erro código 3 = MEDIA_ERR_DECODE (erro de decodificação)
+        // O stream pode se recuperar sozinho
+      });
+      
+      // Play/Pause button
+      playBtn.addEventListener('click', function() {
+        if (audio.paused) {
+          audio.play().then(() => {
+            playIcon.style.display = 'none';
+            pauseIcon.style.display = 'block';
+          }).catch(e => console.log('Play failed:', e));
+        } else {
+          audio.pause();
+          playIcon.style.display = 'block';
+          pauseIcon.style.display = 'none';
+        }
+      });
+    });
+    
+  </script>
+
+  
+</body>
+</html>
