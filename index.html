@@ -13,6 +13,7 @@
     <link rel='preconnect' href='https://fonts.googleapis.com'>
     <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
     <link href='https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&amp;display=swap' rel='stylesheet'>
+    <script language="javascript" type="text/javascript" src="http://cast.suaradionanet.net:2199/system/streaminfo.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -32,6 +33,17 @@
             }
         }
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setInterval(function() {
+                var mainInfo = document.getElementById('cc_strinfo_summary_10502');
+                var marqueeInfo = document.getElementById('cc_strinfo_marquee_10502');
+                if (mainInfo && marqueeInfo && mainInfo.textContent !== 'Loading...') {
+                    marqueeInfo.textContent = mainInfo.textContent;
+                }
+            }, 1000);
+        });
+    </script>
     <style>
         /* Custom Font - Ethnocentric */
         @font-face {
@@ -43,7 +55,7 @@
         
         ::-webkit-scrollbar { display: none;}
         body {
-            background: linear-gradient(135deg, #0A0E27 0%, #050816 100%);
+            background: #0a0e26;
             font-family: 'Exo 2', sans-serif;
             letter-spacing: -0.02em;
         }
@@ -129,18 +141,25 @@
 </head>
 <body class='text-white'>
 
-<header id='header' class='fixed top-0 left-0 right-0 z-50 bg-darker/80 backdrop-blur-md border-b border-primary/20'>
+<header id='header' class='fixed w-full backdrop-blur-md border-b border-primary/20' style='background-color: transparent;'>
+    <div class='w-full bg-darker border-b border-primary/20'>
+    <div class='py-3 overflow-hidden'>
+        <marquee direction='left' scrollamount='3' class='text-white font-bold'>
+            <span class='text-primary'>Currently playing +++</span> 
+            <span id="cc_strinfo_marquee_10502" class="cc_streaminfo text-white">Loading...</span>
+            <span class='text-primary'> ++++</span>
+            <span class='text-gray-300'>THANK YOU, TEŞEKKÜRLER, DANKE, ありがとう, MERCI, СПАСИБО, धन्यवाद, MUCHAS GRACIAS, VA MULTUMIM, Köszönöm, DĚKUJI, KIITOS, DZIĘKUJĘ, СПАСИБО, شكرا لك, ХВАЛА, HVALA VAM, TERIMA KASIH, TUSEN TAKK, TAK, OBRIGADO, ขอบคุณ, GRAZZI, GRAZIE, 謝謝你, 谢谢你, 고마워요 당신 for listening us</span>
+        </marquee>
+    </div>
+</div>
     <div class='max-w-7xl mx-auto px-6 py-4 flex items-center justify-between'>
         <div class='flex items-center space-x-3'>
-           <img  src="logo.png" alt="Logo" class="h-14 w-auto"/>
+           <img  src="logo.png" alt="Logo" class="h-32 w-auto"/>
         </div>
         
         <nav class='flex items-center space-x-8'>
             <a href='#' class='text-white hover:text-primary transition-colors font-normal tracking-tighter'>Home</a>
-            <a href='#' class='text-gray-400 hover:text-primary transition-colors font-normal tracking-tighter'>About Us</a>
-            <a href='#' class='text-gray-400 hover:text-primary transition-colors font-normal tracking-tighter'>DJs</a>
-            <a href='#artists-section' class='text-gray-400 hover:text-primary transition-colors font-normal tracking-tighter'>Submit Music</a>
-            <a href='#' class='text-gray-400 hover:text-primary transition-colors font-normal tracking-tighter'>Contact</a>
+            <a href='mailto:sm@puredj.fm' class='text-gray-400 hover:text-primary transition-colors font-normal tracking-tighter'>Contact</a>
         </nav>
         
         <div class='flex items-center space-x-4'>
@@ -160,10 +179,13 @@
     </div>
 </header>
 
-<main id='main-content' class='pt-20'>
+<!-- Marquee Section -->
 
 
-    <section id='player-section' class='py-16'>
+<main id='main-content'>
+
+
+    <section id='player-section' style='padding-top: 300px; padding-bottom: 4rem;'>
         <div class='max-w-7xl mx-auto px-6'>
             <div class='bg-gradient-to-br from-dark to-darker rounded-3xl p-8 border border-primary/30 glow'>
                 <div class='flex items-center justify-between mb-8'>
@@ -177,22 +199,12 @@
                     </div>
                 </div>
                 
-                <div class='grid grid-cols-3 gap-8'>
-                    <div class='col-span-1'>
-                        <div class='relative'>
-                            <div class='aspect-square rounded-2xl overflow-hidden border-4 border-primary/30 glow'>
-                                <img class='w-full h-full object-cover' src='https://storage.googleapis.com/uxpilot-auth.appspot.com/cdceaceaad-1be5293730721d3c1bf6.png' alt='futuristic DJ turntable with neon blue lights, electronic music theme, dark background' />
-                            </div>
-                            <div class='absolute -bottom-4 left-1/2 -translate-x-1/2 bg-primary px-6 py-2 rounded-full font-exo font-bold italic tracking-tighter'>
-                                DJ PULSE
-                            </div>
-                        </div>
-                    </div>
+                   
                     
                     <div class='col-span-2 flex flex-col justify-center'>
                         <div class='mb-6'>
-                            <h2 class='font-exo text-2xl font-bold italic mb-2 tracking-tighter'>Progressive Trance Sessions</h2>
-                            <p class='text-gray-400 mb-4 tracking-tighter'>Current Track: PureDJ.fm - Trance and House</p>
+                            <h2 class='font-exo text-2xl font-bold italic mb-2 tracking-tighter'>Trance and House Music 7 days all day long</h2>
+                            <p class='text-gray-400 mb-4 tracking-tighter'>Currently playing: <span id="cc_strinfo_summary_10502" class="cc_streaminfo text-primary">Loading...</span></p>
                             
                             <div class='flex items-center space-x-2 mb-4'>
                                 <div class='equalizer-bar'></div>
@@ -243,169 +255,19 @@
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
     </section>
 
-    <section id='app-section' class='py-16 wave-bg'>
-        <div class='max-w-7xl mx-auto px-6'>
-            <div class='grid grid-cols-2 gap-12 items-center'>
-                <div>
-                    <h3 class='font-exo text-4xl font-bold italic mb-4 tracking-tighter'>Take PureDJ<br/>Everywhere</h3>
-                    <p class='text-xl text-gray-300 mb-6 tracking-tighter'>
-                        Download our mobile app and never miss a beat. Available for iOS and Android with exclusive features.
-                    </p>
-                    <ul class='space-y-3 mb-8'>
-                        <li class='flex items-center space-x-3'>
-                            <i class='fa-solid fa-check-circle text-primary text-xl'></i>
-                            <span class='text-gray-300 tracking-tighter'>Offline listening mode</span>
-                        </li>
-                        <li class='flex items-center space-x-3'>
-                            <i class='fa-solid fa-check-circle text-primary text-xl'></i>
-                            <span class='text-gray-300 tracking-tighter'>Personalized playlists</span>
-                        </li>
-                        <li class='flex items-center space-x-3'>
-                            <i class='fa-solid fa-check-circle text-primary text-xl'></i>
-                            <span class='text-gray-300 tracking-tighter'>DJ schedule notifications</span>
-                        </li>
-                        <li class='flex items-center space-x-3'>
-                            <i class='fa-solid fa-check-circle text-primary text-xl'></i>
-                            <span class='text-gray-300 tracking-tighter'>High-quality audio streaming</span>
-                        </li>
-                    </ul>
-                    <div class='flex items-center space-x-4'>
-                        <button class='px-6 py-3 bg-black hover:bg-black/80 rounded-xl font-bold transition-all flex items-center space-x-3 border border-white/20 tracking-tighter'>
-                            <i class='fa-brands fa-apple text-2xl'></i>
-                            <div class='text-left'>
-                                <div class='text-xs text-gray-400'>Download on the</div>
-                                <div class='text-sm'>App Store</div>
-                            </div>
-                        </button>
-                        <button class='px-6 py-3 bg-black hover:bg-black/80 rounded-xl font-bold transition-all flex items-center space-x-3 border border-white/20 tracking-tighter'>
-                            <i class='fa-brands fa-google-play text-2xl'></i>
-                            <div class='text-left'>
-                                <div class='text-xs text-gray-400'>Get it on</div>
-                                <div class='text-sm'>Google Play</div>
-                            </div>
-                        </button>
-                    </div>
-                </div>
-                
-                <div class='relative'>
-                    <div class='absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent rounded-3xl blur-3xl'></div>
-                    <div class='relative'>
-                        <img class='w-full h-auto max-h-[500px] object-contain' src='https://storage.googleapis.com/uxpilot-auth.appspot.com/ada6da4ac5-0601367382ce0b12ee63.png' alt='modern smartphone mockup displaying music app interface with dark theme and blue neon accents, floating in space' />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+   
 
-    <section id='features-section' class='py-16'>
-        <div class='max-w-7xl mx-auto px-6'>
-            <div class='text-center mb-12'>
-                <h3 class='font-exo text-4xl font-bold italic mb-4 tracking-tighter'>Why Choose PureDJ</h3>
-                <p class='text-xl text-gray-300 tracking-tighter'>Experience electronic music like never before</p>
-            </div>
-            
-            <div class='grid grid-cols-3 gap-8'>
-                <div class='bg-gradient-to-br from-dark to-darker rounded-2xl p-8 border border-primary/30 hover:border-primary/60 transition-all'>
-                    <div class='w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center mb-6'>
-                        <i class='fa-solid fa-broadcast-tower text-primary text-3xl'></i>
-                    </div>
-                    <h4 class='font-exo text-xl font-bold italic mb-3 tracking-tighter'>24/7 Live Streaming</h4>
-                    <p class='text-gray-400 tracking-tighter'>Non-stop electronic music broadcasting with professional DJs around the clock.</p>
-                </div>
-                
-                <div class='bg-gradient-to-br from-dark to-darker rounded-2xl p-8 border border-primary/30 hover:border-primary/60 transition-all'>
-                    <div class='w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center mb-6'>
-                        <i class='fa-solid fa-waveform-lines text-primary text-3xl'></i>
-                    </div>
-                    <h4 class='font-exo text-xl font-bold italic mb-3 tracking-tighter'>Premium Audio Quality</h4>
-                    <p class='text-gray-400 tracking-tighter'>Crystal clear 320kbps streaming for the ultimate listening experience.</p>
-                </div>
-                
-                <div class='bg-gradient-to-br from-dark to-darker rounded-2xl p-8 border border-primary/30 hover:border-primary/60 transition-all'>
-                    <div class='w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center mb-6'>
-                        <i class='fa-solid fa-users-line text-primary text-3xl'></i>
-                    </div>
-                    <h4 class='font-exo text-xl font-bold italic mb-3 tracking-tighter'>Global Community</h4>
-                    <p class='text-gray-400 tracking-tighter'>Connect with thousands of electronic music lovers worldwide.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section id='artists-section' class='py-16'>
-        <div class='max-w-7xl mx-auto px-6'>
-            <div class='bg-gradient-to-br from-dark to-darker rounded-3xl p-12 border border-primary/30 relative overflow-hidden'>
-                <div class='absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl'></div>
-                <div class='relative z-10 grid grid-cols-2 gap-12 items-center'>
-                    <div>
-                        <div class='inline-block px-4 py-2 bg-primary/20 rounded-full border border-primary/40 mb-4'>
-                            <span class='text-primary font-bold text-sm tracking-tighter'>FOR ARTISTS</span>
-                        </div>
-                        <h3 class='font-exo text-4xl font-bold italic mb-4 tracking-tighter'>Get Your Music On Air</h3>
-                        <p class='text-xl text-gray-300 mb-6 tracking-tighter'>
-                            Are you an electronic music producer? We're always looking for fresh Trance and House tracks to feature on PureDJ.
-                        </p>
-                        <ul class='space-y-3 mb-8'>
-                            <li class='flex items-center space-x-3'>
-                                <i class='fa-solid fa-music text-primary text-xl'></i>
-                                <span class='text-gray-300 tracking-tighter'>Submit your original tracks</span>
-                            </li>
-                            <li class='flex items-center space-x-3'>
-                                <i class='fa-solid fa-chart-line text-primary text-xl'></i>
-                                <span class='text-gray-300 tracking-tighter'>Reach thousands of listeners</span>
-                            </li>
-                            <li class='flex items-center space-x-3'>
-                                <i class='fa-solid fa-handshake text-primary text-xl'></i>
-                                <span class='text-gray-300 tracking-tighter'>Collaborate with our DJs</span>
-                            </li>
-                        </ul>
-                        <button class='px-8 py-4 bg-primary hover:bg-primary/80 rounded-full font-bold text-lg transition-all glow-strong tracking-tighter'>
-                            <i class='fa-solid fa-paper-plane mr-2'></i>
-                            Submit Your Track
-                        </button>
-                    </div>
-                    <div class='flex items-center justify-center'>
-                        <div class='relative'>
-                            <div class='w-80 h-80 rounded-2xl bg-gradient-to-br from-primary/20 to-transparent border border-primary/30 flex items-center justify-center'>
-                                <i class='fa-solid fa-compact-disc text-primary text-9xl animate-pulse-slow'></i>
-                            </div>
-                            <div class='absolute -top-4 -right-4 w-24 h-24 bg-primary rounded-full flex items-center justify-center glow-strong'>
-                                <i class='fa-solid fa-microphone text-white text-3xl'></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id='cta-section' class='py-16'>
-        <div class='max-w-7xl mx-auto px-6'>
-            <div class='bg-gradient-to-r from-primary to-cyan-500 rounded-3xl p-12 text-center relative overflow-hidden'>
-                <div class='absolute inset-0 opacity-10'>
-                    <div class='absolute inset-0' style='background-image: radial-gradient(circle, white 1px, transparent 1px); background-size: 20px 20px;'></div>
-                </div>
-                <div class='relative z-10'>
-                    <h3 class='font-exo text-4xl font-bold italic mb-4 tracking-tighter'>Ready to Tune In?</h3>
-                    <p class='text-xl mb-8 text-white/90 tracking-tighter'>Join thousands of listeners and experience the best electronic music</p>
-                    <button class='px-10 py-4 bg-white text-primary hover:bg-gray-100 rounded-full font-bold text-lg transition-all shadow-xl tracking-tighter'>
-                        <i class='fa-solid fa-play mr-2'></i>
-                        Start Listening Now
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
+   
 </main>
 
 <footer id='footer' class='bg-darker border-t border-primary/20 py-12 mt-16'>
     <div class='max-w-7xl mx-auto px-6'>
-        <div class='grid grid-cols-4 gap-8 mb-8'>
+        <div class='grid grid-cols-3 gap-8 mb-8'>
             <div>
                 <div class='flex items-center space-x-3 mb-4'>
              <img  src="logo.png" alt="Logo" class="h-10 w-auto"/>
@@ -417,22 +279,10 @@
                 <h5 class='font-exo font-bold italic mb-4 tracking-tighter'>Quick Links</h5>
                 <ul class='space-y-2 text-gray-400 text-sm'>
                     <li><a href='#' class='hover:text-primary transition-colors tracking-tighter'>Home</a></li>
-                    <li><a href='#' class='hover:text-primary transition-colors tracking-tighter'>About us</a></li>
-                    <li><a href='#' class='hover:text-primary transition-colors tracking-tighter'>DJs</a></li>
-                    <li><a href='#artists-section' class='hover:text-primary transition-colors tracking-tighter'>Submit Music</a></li>
                     <li><a href='#' class='hover:text-primary transition-colors tracking-tighter'>Contact</a></li>
                 </ul>
             </div>
-            
-            <div>
-                <h5 class='font-exo font-bold italic mb-4 tracking-tighter'>Legal</h5>
-                <ul class='space-y-2 text-gray-400 text-sm'>
-                    <li><a href='#' class='hover:text-primary transition-colors tracking-tighter'>Terms of Service</a></li>
-                    <li><a href='#' class='hover:text-primary transition-colors tracking-tighter'>Privacy Policy</a></li>
-                    <li><a href='#' class='hover:text-primary transition-colors tracking-tighter'>Cookie Policy</a></li>
-                    <li><a href='#' class='hover:text-primary transition-colors tracking-tighter'>DMCA</a></li>
-                </ul>
-            </div>
+  
             
             <div>
                 <h5 class='font-exo font-bold italic mb-4 tracking-tighter'>Connect With Us</h5>
@@ -458,7 +308,7 @@
         </div>
         
         <div class='border-t border-primary/20 pt-8 flex items-center justify-between'>
-            <p class='text-gray-400 text-sm tracking-tighter'>© 2024 PureDJ. All rights reserved.</p>
+            <p class='text-gray-400 text-sm tracking-tighter'>© <span id='current-year'></span> PureDJ. All rights reserved.</p>
             <p class='text-gray-400 text-sm tracking-tighter'>Made with <i class='fa-solid fa-heart text-primary'></i> for electronic music lovers</p>
         </div>
     </div>
@@ -479,6 +329,8 @@
       document.addEventListener('click', function(e) {
         var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
         if (!a) return;
+        // Allow mailto links
+        if (a.href && a.href.startsWith('mailto:')) return;
         return blockEvent(e);
       }, true);
 
@@ -606,6 +458,9 @@
         }
       });
     });
+    
+    // Set current year
+    document.getElementById('current-year').textContent = new Date().getFullYear();
     
   </script>
 
