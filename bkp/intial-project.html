@@ -124,6 +124,11 @@
         .equalizer-bar.playing:nth-child(4) { animation-duration: 1.4s; animation-delay: 0.45s; }
         .equalizer-bar.playing:nth-child(5) { animation-duration: 1.2s; animation-delay: 0.6s; }
 
+        .flex.items-center.space-x-2.mb-4 {
+            min-height: 32px;
+            align-items: flex-end;
+        }
+
         .wave-bg {
             background: linear-gradient(135deg, rgba(2, 146, 210, 0.1) 0%, rgba(0, 212, 255, 0.05) 100%);
         }
@@ -155,25 +160,15 @@
 
 <script>
 (function() {
-  // Check if path contains '/old'
-
-
-  // Password protection
+  // Password protection - asks every time
   const correctPassword = '1410'; // Change this to your desired password
-  const sessionKey = 'puredj_old_access';
 
-  // Check if already authenticated in this session
-  if (sessionStorage.getItem(sessionKey) !== 'true') {
-    const userPassword = prompt('Enter password to access this page:');
+  const userPassword = prompt('Enter password to access this page:');
 
-    if (userPassword !== correctPassword) {
-      alert('Incorrect password!');
-      document.body.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100vh; background: #0A0E27; color: white; font-family: Arial, sans-serif; font-size: 24px;">Access Denied</div>';
-      return;
-    }
-
-    // Set session flag
-    sessionStorage.setItem(sessionKey, 'true');
+  if (userPassword !== correctPassword) {
+    alert('Incorrect password!');
+    document.body.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100vh; background: #0A0E27; color: white; font-family: Arial, sans-serif; font-size: 24px;">Access Denied</div>';
+    return;
   }
 })();
 </script>
