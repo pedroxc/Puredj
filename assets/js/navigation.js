@@ -8,12 +8,20 @@
         return false;
     }
 
-    // Block all anchor navigations (except mailto)
+    // Block all anchor navigations (except mailto and external links)
     document.addEventListener('click', function(e) {
         var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
         if (!a) return;
         // Allow mailto links
         if (a.href && a.href.startsWith('mailto:')) return;
+        // Allow external links with target="_blank"
+        if (a.target === '_blank') return;
+        // Allow links to external domains
+        if (a.href && (a.href.startsWith('http://') || a.href.startsWith('https://'))) {
+            var currentDomain = window.location.hostname;
+            var linkDomain = new URL(a.href).hostname;
+            if (linkDomain !== currentDomain) return;
+        }
         return blockEvent(e);
     }, true);
 
