@@ -4,7 +4,7 @@
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <link rel='icon' type='image/x-icon' href='favicon.ico'>
+    <link rel='icon' type='image/x-icon' href='assets/images/favicon.ico'>
     <title>PureDJ</title>
     <script src='https://code.jquery.com/jquery-3.7.1.min.js'></script>
     <script src='https://cdn.tailwindcss.com'></script>
@@ -36,7 +36,7 @@
         /* Custom Font - Ethnocentric */
         @font-face {
             font-family: 'Ethnocentric';
-            src: url('ethnocentric.otf') format('opentype');
+            src: url('assets/fonts/ethnocentric.otf') format('opentype');
             font-weight: normal;
             font-style: normal;
         }
@@ -86,19 +86,43 @@
             width: 4px;
             background: linear-gradient(to top, #0292D2, #00D4FF);
             border-radius: 2px;
-            animation: equalize 0.8s ease-in-out infinite;
+            height: 0;
+            min-height: 0;
+            display: inline-block;
+            animation: none;
+            transition: height 0.8s ease-out, opacity 0.5s ease-out;
+        }
+
+        .equalizer-bar.playing {
+            animation: equalize 1.2s ease-in-out infinite;
+            transition: none;
+        }
+
+        .equalizer-bar:not(.playing) {
+            animation: none !important;
+            height: 0px !important;
+            transition: height 0.8s ease-out;
         }
 
         @keyframes equalize {
-            0%, 100% { height: 20%; }
-            50% { height: 100%; }
+            0% { height: 8px; }
+            10% { height: 18px; }
+            20% { height: 12px; }
+            30% { height: 24px; }
+            40% { height: 15px; }
+            50% { height: 28px; }
+            60% { height: 20px; }
+            70% { height: 15px; }
+            80% { height: 26px; }
+            90% { height: 12px; }
+            100% { height: 8px; }
         }
 
-        .equalizer-bar:nth-child(1) { animation-delay: 0s; }
-        .equalizer-bar:nth-child(2) { animation-delay: 0.1s; }
-        .equalizer-bar:nth-child(3) { animation-delay: 0.2s; }
-        .equalizer-bar:nth-child(4) { animation-delay: 0.3s; }
-        .equalizer-bar:nth-child(5) { animation-delay: 0.4s; }
+        .equalizer-bar.playing:nth-child(1) { animation-duration: 1.1s; animation-delay: 0s; }
+        .equalizer-bar.playing:nth-child(2) { animation-duration: 1.3s; animation-delay: 0.15s; }
+        .equalizer-bar.playing:nth-child(3) { animation-duration: 1.0s; animation-delay: 0.3s; }
+        .equalizer-bar.playing:nth-child(4) { animation-duration: 1.4s; animation-delay: 0.45s; }
+        .equalizer-bar.playing:nth-child(5) { animation-duration: 1.2s; animation-delay: 0.6s; }
 
         .wave-bg {
             background: linear-gradient(135deg, rgba(2, 146, 210, 0.1) 0%, rgba(0, 212, 255, 0.05) 100%);
@@ -129,10 +153,39 @@
 </head>
 <body class='text-white'>
 
+<script>
+(function() {
+  // Check if path contains '/old'
+  const currentPath = window.location.pathname;
+  if (!currentPath.includes('/old')) {
+    document.body.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100vh; background: #0A0E27; color: white; font-family: Arial, sans-serif; font-size: 24px;">Access Denied</div>';
+    return;
+  }
+
+  // Password protection
+  const correctPassword = '1410'; // Change this to your desired password
+  const sessionKey = 'puredj_old_access';
+
+  // Check if already authenticated in this session
+  if (sessionStorage.getItem(sessionKey) !== 'true') {
+    const userPassword = prompt('Enter password to access this page:');
+
+    if (userPassword !== correctPassword) {
+      alert('Incorrect password!');
+      document.body.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100vh; background: #0A0E27; color: white; font-family: Arial, sans-serif; font-size: 24px;">Access Denied</div>';
+      return;
+    }
+
+    // Set session flag
+    sessionStorage.setItem(sessionKey, 'true');
+  }
+})();
+</script>
+
 <header id='header' class='fixed top-0 left-0 right-0 z-50 bg-darker/80 backdrop-blur-md border-b border-primary/20'>
     <div class='max-w-7xl mx-auto px-6 py-4 flex items-center justify-between'>
         <div class='flex items-center space-x-3'>
-           <img  src="logo.png" alt="Logo" class="h-14 w-auto"/>
+           <img  src="../assets/images/logo.png" alt="Logo" class="h-14 w-auto"/>
         </div>
 
         <nav class='flex items-center space-x-8'>
@@ -408,7 +461,7 @@
         <div class='grid grid-cols-4 gap-8 mb-8'>
             <div>
                 <div class='flex items-center space-x-3 mb-4'>
-             <img  src="logo.png" alt="Logo" class="h-10 w-auto"/>
+             <img  src="../assets/images/logo.png" alt="Logo" class="h-10 w-auto"/>
                 </div>
                 <p class='text-gray-400 text-sm tracking-tighter'>The finest electronic music streaming platform for Trance &amp; House lovers.</p>
             </div>
@@ -516,11 +569,23 @@
       const volumeOff = document.getElementById('volume-off');
       const volumeLow = document.getElementById('volume-low');
       const volumeHigh = document.getElementById('volume-high');
+      const equalizerBars = document.querySelectorAll('.equalizer-bar');
 
       pauseIcon.style.display = 'none';
 
       // Variable to store last volume before mute
       let lastVolume = 50;
+
+      // Function to update equalizer animation
+      function updateEqualizerAnimation(isPlaying) {
+        equalizerBars.forEach(bar => {
+          if (isPlaying) {
+            bar.classList.add('playing');
+          } else {
+            bar.classList.remove('playing');
+          }
+        });
+      }
 
       // Function to update volume icon
       function updateVolumeIcon() {
@@ -598,11 +663,13 @@
           audio.play().then(() => {
             playIcon.style.display = 'none';
             pauseIcon.style.display = 'block';
+            updateEqualizerAnimation(true);
           }).catch(e => console.log('Play failed:', e));
         } else {
           audio.pause();
           playIcon.style.display = 'block';
           pauseIcon.style.display = 'none';
+          updateEqualizerAnimation(false);
         }
       });
     });
