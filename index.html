@@ -39,27 +39,27 @@
         </div>
     </div>
 
-    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <div class="flex items-center space-x-3">
-           <img src="assets/images/logo.png" alt="PureDJ Logo" class="h-32 w-auto">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between flex-wrap lg:flex-nowrap gap-4">
+        <div class="flex items-center space-x-3 flex-shrink-0">
+           <img src="assets/images/logo.png" alt="PureDJ Logo" class="h-20 sm:h-24 md:h-28 lg:h-32 w-auto object-contain">
         </div>
 
-        <nav class="flex items-center space-x-8">
-            <a href="#" class="text-white hover:text-primary transition-colors font-normal tracking-tighter">Home</a>
-            <a href="mailto:sm@puredj.fm" class="text-gray-400 hover:text-primary transition-colors font-normal tracking-tighter">Contact</a>
+        <nav class="hidden md:flex items-center space-x-4 lg:space-x-8 order-3 lg:order-none w-full lg:w-auto justify-center">
+            <a href="#" class="text-white hover:text-primary transition-colors font-normal tracking-tighter text-sm lg:text-base">Home</a>
+            <a href="mailto:sm@puredj.fm" class="text-gray-400 hover:text-primary transition-colors font-normal tracking-tighter text-sm lg:text-base">Contact</a>
         </nav>
 
-        <div class="flex items-center space-x-4">
-            <a href="#" class="w-10 h-10 rounded-full bg-dark border border-primary/30 flex items-center justify-center hover:bg-primary/20 transition-all" aria-label="Facebook">
+        <div class="flex items-center space-x-3 sm:space-x-4 order-2 flex-shrink-0">
+            <a href="#" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-dark border border-primary/30 flex items-center justify-center hover:bg-primary/20 transition-all" aria-label="Facebook">
                 <i class="fa-brands fa-facebook-f text-primary"></i>
             </a>
-            <a href="#" class="w-10 h-10 rounded-full bg-dark border border-primary/30 flex items-center justify-center hover:bg-primary/20 transition-all" aria-label="Instagram">
+            <a href="#" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-dark border border-primary/30 flex items-center justify-center hover:bg-primary/20 transition-all" aria-label="Instagram">
                 <i class="fa-brands fa-instagram text-primary"></i>
             </a>
-            <a href="#" class="w-10 h-10 rounded-full bg-dark border border-primary/30 flex items-center justify-center hover:bg-primary/20 transition-all" aria-label="Twitter">
+            <a href="#" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-dark border border-primary/30 flex items-center justify-center hover:bg-primary/20 transition-all" aria-label="Twitter">
                 <i class="fa-brands fa-twitter text-primary"></i>
             </a>
-            <a href="#" class="w-10 h-10 rounded-full bg-dark border border-primary/30 flex items-center justify-center hover:bg-primary/20 transition-all" aria-label="YouTube">
+            <a href="#" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-dark border border-primary/30 flex items-center justify-center hover:bg-primary/20 transition-all" aria-label="YouTube">
                 <i class="fa-brands fa-youtube text-primary"></i>
             </a>
         </div>
@@ -67,7 +67,7 @@
 </header>
 
 <main id="main-content">
-    <section id="player-section" style="padding-top: 300px; padding-bottom: 4rem;">
+    <section id="player-section" class="pt-[250px] sm:pt-[320px] md:pt-[280px] pb-16">
         <div class="max-w-7xl mx-auto px-6">
             <div class="bg-gradient-to-br from-dark to-darker rounded-3xl p-8 border border-primary/30 glow">
                 <div class="flex items-center justify-between mb-8">
@@ -140,10 +140,10 @@
 
 <footer id="footer" class="bg-darker border-t border-primary/20 py-12 mt-16">
     <div class="max-w-7xl mx-auto px-6">
-        <div class="grid grid-cols-3 gap-8 mb-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
             <div>
                 <div class="flex items-center space-x-3 mb-4">
-                    <img src="assets/images/logo.png" alt="PureDJ Logo" class="h-10 w-auto">
+                    <img src="assets/images/logo.png" alt="PureDJ Logo" class="h-8 sm:h-10 w-auto">
                 </div>
                 <p class="text-gray-400 text-sm tracking-tighter">The finest electronic music streaming platform for Trance & House lovers.</p>
             </div>
@@ -179,7 +179,7 @@
             </div>
         </div>
 
-        <div class="border-t border-primary/20 pt-8 flex items-center justify-between">
+        <div class="border-t border-primary/20 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
             <p class="text-gray-400 text-sm tracking-tighter">© <span id="current-year"></span> PureDJ. All rights reserved.</p>
             <p class="text-gray-400 text-sm tracking-tighter">Made with <i class="fa-solid fa-heart text-primary"></i> for electronic music lovers</p>
         </div>
