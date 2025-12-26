@@ -10,11 +10,23 @@ document.addEventListener('DOMContentLoaded', function() {
     const volumeOff = document.getElementById('volume-off');
     const volumeLow = document.getElementById('volume-low');
     const volumeHigh = document.getElementById('volume-high');
+    const equalizerBars = document.querySelectorAll('.equalizer-bar');
     
     pauseIcon.style.display = 'none';
     
     // Variable to store last volume before mute
     let lastVolume = 50;
+    
+    // Function to update equalizer animation
+    function updateEqualizerAnimation(isPlaying) {
+        equalizerBars.forEach(bar => {
+            if (isPlaying) {
+                bar.classList.add('playing');
+            } else {
+                bar.classList.remove('playing');
+            }
+        });
+    }
     
     // Function to update volume icon
     function updateVolumeIcon() {
@@ -86,11 +98,13 @@ document.addEventListener('DOMContentLoaded', function() {
             audio.play().then(() => {
                 playIcon.style.display = 'none';
                 pauseIcon.style.display = 'block';
+                updateEqualizerAnimation(true);
             }).catch(e => console.log('Play failed:', e));
         } else {
             audio.pause();
             playIcon.style.display = 'block';
             pauseIcon.style.display = 'none';
+            updateEqualizerAnimation(false);
         }
     });
 });
