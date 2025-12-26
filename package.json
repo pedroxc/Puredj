@@ -1,0 +1,23 @@
+{
+  "name": "puredj",
+  "version": "1.0.0",
+  "description": "Live Trance & House Music Radio Streaming Platform",
+  "main": "index.html",
+  "scripts": {
+    "start": "php -S localhost:8000",
+    "lint:html": "echo 'HTML validation'",
+    "lint:css": "echo 'CSS validation'",
+    "lint:js": "echo 'JS validation'"
+  },
+  "keywords": [
+    "radio",
+    "streaming",
+    "trance",
+    "house",
+    "music",
+    "live"
+  ],
+  "author": "PureDJ",
+  "license": "UNLICENSED",
+  "private": true
+}

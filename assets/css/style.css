@@ -1,0 +1,101 @@
+/* Custom Font - Ethnocentric */
+@font-face {
+    font-family: 'Ethnocentric';
+    src: url('../fonts/ethnocentric.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* Base Styles */
+body {
+    background: #0a0e26;
+    font-family: 'Exo 2', sans-serif;
+    letter-spacing: -0.02em;
+}
+
+h1, h2, h3 {
+    font-family: 'Ethnocentric', 'Exo 2', sans-serif;
+}
+
+header nav a {
+    font-family: 'Ethnocentric', 'Exo 2', sans-serif;
+}
+
+/* Animations */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes equalize {
+    0%, 100% { height: 20%; }
+    50% { height: 100%; }
+}
+
+/* Animation Classes */
+.animate-pulse-slow {
+    animation: pulse 3s ease-in-out infinite;
+}
+
+.animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+}
+
+/* Effects */
+.glow {
+    box-shadow: 0 0 20px rgba(2, 146, 210, 0.3);
+}
+
+.glow-strong {
+    box-shadow: 0 0 30px rgba(2, 146, 210, 0.6), 0 0 60px rgba(2, 146, 210, 0.3);
+}
+
+.wave-bg {
+    background: linear-gradient(135deg, rgba(2, 146, 210, 0.1) 0%, rgba(0, 212, 255, 0.05) 100%);
+}
+
+/* Equalizer Bars */
+.equalizer-bar {
+    width: 4px;
+    background: linear-gradient(to top, #0292D2, #00D4FF);
+    border-radius: 2px;
+    animation: equalize 0.8s ease-in-out infinite;
+}
+
+.equalizer-bar:nth-child(1) { animation-delay: 0s; }
+.equalizer-bar:nth-child(2) { animation-delay: 0.1s; }
+.equalizer-bar:nth-child(3) { animation-delay: 0.2s; }
+.equalizer-bar:nth-child(4) { animation-delay: 0.3s; }
+.equalizer-bar:nth-child(5) { animation-delay: 0.4s; }
+
+/* Volume Slider */
+#volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+#volume-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
