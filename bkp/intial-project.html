@@ -156,11 +156,7 @@
 <script>
 (function() {
   // Check if path contains '/old'
-  const currentPath = window.location.pathname;
-  if (!currentPath.includes('/old')) {
-    document.body.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100vh; background: #0A0E27; color: white; font-family: Arial, sans-serif; font-size: 24px;">Access Denied</div>';
-    return;
-  }
+
 
   // Password protection
   const correctPassword = '1410'; // Change this to your desired password
