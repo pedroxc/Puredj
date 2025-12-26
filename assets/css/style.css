@@ -67,7 +67,7 @@ header {
 #volume-muted,
 #volume-off,
 #volume-high {
-    display: none !important;
+    display: none ;
 }
 
 #play-icon {
